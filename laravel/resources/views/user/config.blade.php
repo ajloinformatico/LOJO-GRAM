@@ -90,6 +90,12 @@
                             </div>
                         </div>
 
+
+                        <!--Campo file-->
+                        <div class="form-group row">
+                            <label for="">
+                        </div>
+
                         <!--Campo Confirm Password-->
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
