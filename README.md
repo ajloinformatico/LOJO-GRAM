@@ -1,2 +1,2 @@
 # LOJO-GRAM
-Instagram clone in Laravel
+Social Network app in lravel
