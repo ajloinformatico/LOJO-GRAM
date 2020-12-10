@@ -16,7 +16,7 @@
                 <div class="card-header">{{ __('Profile Config') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url("user/update/".$user->id) }}"><!--Envio también la id pra hacer el update-->
+                    <form method="POST"   enctype="multipart/form-data" action="{{ url("user/update/".$user->id) }}"><!--Envio también la id pra hacer el update-->
                         @csrf
                         {{ method_field('PATCH')}}
 

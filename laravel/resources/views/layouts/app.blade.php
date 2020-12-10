@@ -35,25 +35,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
-
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li>
-                            <a href="{{ url('/home') }}">Inicio</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/gente') }}">Gente</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/favoritas')}}">Favoritas</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/Subir imagen')}}">Subir Imágen</a>
-                        </li>
+
 
                         <!-- Authentication Links -->
                         @guest
@@ -67,9 +53,31 @@
                             @endif
                         @else
                             <!--Menú Burger de navegación-->
+                            <li class="nav-item">
+                                <a href="{{ url('/home') }}">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/gente') }}">Gente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/favoritas')}}">Favoritas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/Subir imagen')}}">Subir Imágen</a>
+                            </li>
                             <li class="nav-item dropdown">
-                                <!--Imágen del usuario-->
-                                <img srtyle="display: inline;" src="" alt="imagen del usuario" title="imágen del usuario">
+
+                                <!--Imágen del usuario si es distinta a la imágen por defecto-->
+                                @if (Auth::user()->image_profile != 'standUser.jpg')
+                                    <!--<script>alert("existo")</script>-->
+                                    <img style="display: inline;" src="{{asset('/storage/users/'.Auth::user()->image_profile)}}" alt="imagen del usuario" title="imágen del usuario">
+                                <!--Si no carga la imágen por-->
+
+                                @else
+                                    <img style="display: inline;" src="{{asset('/storage/general/standUser.jpg')}}" alt="imágen del usuario" title="imágen del usuario" class="avatar">
+
+                                @endif
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>

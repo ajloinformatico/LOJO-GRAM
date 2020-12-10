@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage; //Para las imágenes
@@ -79,31 +81,31 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $newDates = request()->except(['_token','_method']);//Selecciono todo menos el token y el método
-        //Imagen introducida
+
+        //Campura la imágen en un objeto
         $image_path = $request->file('image_profile');
-        //return response($newDates);
 
         if($image_path){
-            //Almacena el nombre de la imágen para guardarla en su directorio
-            //$image_path_name = time()."_".$image_path->getClientOriginalName();
-            $image_path->storeAs('users', $id); //Carpeta directamente
-            //Storage::disk('users')->put($image_path_name, File::get($image_path));
-            //$_SESSION['message'] = 'La imágen ha sido actualizada';
-            //return response coge");
+            //Nombre_a_la_imagen = id_nombre.ext
+            $image_path_name = $id."_".$image_path->getClientOriginalName();
 
+            Storage::delete(['storage/app/public/users/'.Auth::user()->image_profile]);
+            $image_path->storeAs('public/users', $image_path_name); //Almacena en el directorio users de storage con el nombre image_path_name
+
+            $newDates['image_profile'] = $image_path_name; //Coloco en el array de los nuevos datos el nombre de la imagen
+            //$_SESSION['message'] = 'Has actualizado también la imágen';
         }else{
-            //return response("no la coge");
-            //$_SESSION['message'] = 'La imágen no ha sido actualizada';
+            //$_SESSION['message'] = 'La imágen no la has actualizada';
         }
-        //$_SESSION['message'] += 'Los datos seleccionados se han insertado correctamente';
+        //Actualiza la base de datos
         $oldDates = User::where('id',"=",$id)->update($newDates);
-        return redirect("/user/". $id ."/config");
+        return redirect("/user/". $id ."/config")->with('message', 'the profile was updated correctly');
     }
     /*
-     $image = $request->file('imagen');
- $image->move('uploads', $image->getClientOriginalName()); //Guarda en users
- $nombre_tabla->imagen = image->getClientOriginalName(); //Guarda en la base de datos
-
+    OTRA FORMA DE HACER LA INSERCCIÓN
+    $image = $request->file('imagen');
+    $image->move('uploads', $image->getClientOriginalName()); //Guarda en users
+    $nombre_tabla->imagen = image->getClientOriginalName(); //Guarda en la base de datos
     */
 
     /**
