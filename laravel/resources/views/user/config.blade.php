@@ -85,12 +85,12 @@
 
                          <!--Campo file Profile image Uníco que no es requerido-->
                         <div class="form-group row">
-                            <label for="imageprofile" class="col-md-4 col-form-label text-md-right">{{ __('Image Profile')}}</label>
+                            <label for="image_profile" class="col-md-4 col-form-label text-md-right">{{ __('Image Profile')}}</label>
 
                             <div class="col-md-6">
-                                <input id="imageprofile"  accept="image/*" type="file" class="form-control @error('image_profile') is-invalid @enderror" name="imageprofile"  autocomplete="imageprofile">
+                                <input id="image_profile"  accept="image/*" type="file" class="form-control @error('image_profile') is-invalid @enderror" name="image_profile"  autocomplete="image_profile">
 
-                                @error('imageprofile')
+                                @error('image_profile')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

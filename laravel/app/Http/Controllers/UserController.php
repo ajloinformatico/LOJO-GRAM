@@ -80,14 +80,16 @@ class UserController extends Controller
     {
         $newDates = request()->except(['_token','_method']);//Selecciono todo menos el token y el método
         //Imagen introducida
-        $image_path = $request->file('imageprofile');
+        $image_path = $request->file('image_profile');
         //return response($newDates);
+
         if($image_path){
             //Almacena el nombre de la imágen para guardarla en su directorio
-            $image_path_name = time()."_".$image_path->getClientOriginalName();
-            Storage::disk('public')->put($image_path_name, File::get($image_path));
+            //$image_path_name = time()."_".$image_path->getClientOriginalName();
+            $image_path->storeAs('users', $id); //Carpeta directamente
+            //Storage::disk('users')->put($image_path_name, File::get($image_path));
             //$_SESSION['message'] = 'La imágen ha sido actualizada';
-            //return response("la coge");
+            //return response coge");
 
         }else{
             //return response("no la coge");
