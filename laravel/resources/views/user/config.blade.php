@@ -4,6 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <!--Muestra con las variables de sesión que agregado correctamente-->
+            <!--Tus datos han sigo agregados correctamente-->
+            <!--Creo que tengo que enviar por get un mensaje pero xd-->
+            @if(session('message'))
+                <div class="aler alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('Profile Config') }}</div>
 
@@ -75,12 +83,27 @@
                             </div>
                         </div>
 
+                         <!--Campo file Profile image Uníco que no es requerido-->
+                        <div class="form-group row">
+                            <label for="imageprofile" class="col-md-4 col-form-label text-md-right">{{ __('Image Profile')}}</label>
+
+                            <div class="col-md-6">
+                                <input id="imageprofile"  accept="image/*" type="file" class="form-control @error('image_profile') is-invalid @enderror" name="imageprofile"  autocomplete="imageprofile">
+
+                                @error('imageprofile')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <!--Campo password-->
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" value="{{ $user->password}}" name="password" required autocomplete="password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -90,26 +113,13 @@
                             </div>
                         </div>
 
-
-                        <!--Campo file-->
-                        <div class="form-group row">
-                            <label for="">
-                        </div>
-
-                        <!--Campo Confirm Password-->
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+                        <!--El campo de confirmar conrtaseña no es requerido ya que está dado ya de alta-->
 
                         <!--Campo submit-->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Edit') }}
                                 </button>
                             </div>
                         </div>

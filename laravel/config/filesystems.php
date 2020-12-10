@@ -48,12 +48,28 @@ return [
             'root' => storage_path('app'),
         ],
 
+        //Disco Usuarios
+        'users' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/users'),
+            'visibility' => 'public',
+        ],
+
+        //Disco General
+        'general' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/general'),
+            'visibility' => 'public',
+        ],
+
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+
 
         's3' => [
             'driver' => 's3',

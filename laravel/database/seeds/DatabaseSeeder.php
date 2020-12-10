@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         //USER TABLE
         //DELETE ALL TABLE
-        DB::table('users')->where('id','*')->delete();
+        DB::table('users')->delete();
         //INSERT DEFAULT USER DATE
         DB::table('users')->insert([
             'rol' => 'admin',

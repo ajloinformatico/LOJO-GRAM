@@ -6,6 +6,9 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage; //Para las imágenes
+use Illuminate\Support\Facades\File; //Para las imágenes
+
 
 class UserController extends Controller
 {
@@ -75,12 +78,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $newDates = request()->except(['_token','_method','password_confirmation']);//Selecciono todo menos el token y el método
+        $newDates = request()->except(['_token','_method']);//Selecciono todo menos el token y el método
+        //Imagen introducida
+        $image_path = $request->file('imageprofile');
+        //return response($newDates);
+        if($image_path){
+            //Almacena el nombre de la imágen para guardarla en su directorio
+            $image_path_name = time()."_".$image_path->getClientOriginalName();
+            Storage::disk('public')->put($image_path_name, File::get($image_path));
+            //$_SESSION['message'] = 'La imágen ha sido actualizada';
+            //return response("la coge");
 
+        }else{
+            //return response("no la coge");
+            //$_SESSION['message'] = 'La imágen no ha sido actualizada';
+        }
+        //$_SESSION['message'] += 'Los datos seleccionados se han insertado correctamente';
         $oldDates = User::where('id',"=",$id)->update($newDates);
-
-        return redirect("/home");
+        return redirect("/user/". $id ."/config");
     }
+    /*
+     $image = $request->file('imagen');
+ $image->move('uploads', $image->getClientOriginalName()); //Guarda en users
+ $nombre_tabla->imagen = image->getClientOriginalName(); //Guarda en la base de datos
+
+    */
 
     /**
      * Remove the specified resource from storage.
