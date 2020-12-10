@@ -89,7 +89,8 @@ class UserController extends Controller
             //Nombre_a_la_imagen = id_nombre.ext
             $image_path_name = $id."_".$image_path->getClientOriginalName();
 
-            Storage::delete(['storage/app/public/users/'.Auth::user()->image_profile]);
+            //Storage::delete(['app/public/users'.Auth::user()->image_profile]); //Si existiese alguna imagen la elimina
+            Storage::disk('users')->delete(Auth::user()->image_profile); //Elimina la imágen
             $image_path->storeAs('public/users', $image_path_name); //Almacena en el directorio users de storage con el nombre image_path_name
 
             $newDates['image_profile'] = $image_path_name; //Coloco en el array de los nuevos datos el nombre de la imagen
