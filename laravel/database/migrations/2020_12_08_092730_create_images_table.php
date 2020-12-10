@@ -22,7 +22,7 @@ class CreateImagesTable extends Migration
             ->on('users')
             ->onDelete('cascade');
 
-            $table->binary('image_pat');
+            $table->string('image_pat');
             $table->string('description');
 
             $table->timestamps();

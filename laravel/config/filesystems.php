@@ -64,6 +64,14 @@ return [
             'visibility' => 'public',
         ],
 
+        //Disco imágenes que se suben
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images'),
+            'url' => env('APP_URL').'/images',
+            'visibility' => 'public',
+        ],
+
 
         'public' => [
             'driver' => 'local',

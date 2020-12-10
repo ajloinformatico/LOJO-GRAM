@@ -63,7 +63,7 @@
                                 <a class="nav-link" href="{{ url('/favoritas')}}">Favoritas</a>
                             </li>
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url('/Subir imagen')}}">Subir Imágen</a>
+                                <a  class="nav-link" href="{{ url('/image/'.Auth::user()->id.'/save')}}">Subir Imágen</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -74,7 +74,7 @@
                                <!--Si no carga la imágen por-->
 
                                 @else
-                                    <img  src="{{asset('/storage/general/standUser.jpg')}}" alt="imágen del usuario" title="imágen del usuario" class="rounded-circle"">
+                                    <img  src="{{asset('/storage/general/standUser.jpg')}}" alt="imágen del usuario" title="imágen del usuario" width='50px' class="rounded-circle">
 
                                @endif
 
