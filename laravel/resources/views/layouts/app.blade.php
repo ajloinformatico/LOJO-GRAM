@@ -112,6 +112,13 @@
 
         <main class="py-4">
             @yield('content')
+            @if({images})
+                <p>We have photos</p>
+
+            @else
+                <p>ADD THE FIRST IMAGE :)</p>
+            @endif
+
         </main>
     </div>
 </body>

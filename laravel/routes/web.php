@@ -22,7 +22,7 @@ Route::get('/user/{user}/config', 'UserController@config')->name('user.config');
 Route::patch('/user/update/{user}','UserController@update')->name('user.update');
 
 //Rutas de imágebnes
-Route::get('/image/{user}/save/', 'ImagesController@create')->name('image.create'); //Vista para insertar una imágen
-Route::patch('/image/save', 'ImagesController@save'); //Guarda la imágen
+Route::get('/image/{user}/save', 'ImagesController@create')->name('image.create'); //Vista para insertar una imágen
+Route::patch('/image/save/{id}', 'ImagesController@store'); //Guarda la imágen se evnia junto a la id del usuario
 Route::get('/image/file/{file}', 'ImagesController@getImage'); //Devuelve la imágen que se pase como parámetro
 Route::get('/image/{id}', 'ImagesController@detail')->name('image.detail');

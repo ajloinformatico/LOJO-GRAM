@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\images;
 use App\User;
+use Faker\Provider\ar_JO\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage; //Para las imágenes
@@ -18,7 +20,8 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        //
+        //Paginación de las imágenes
+
     }
 
     /**
@@ -28,8 +31,8 @@ class ImagesController extends Controller
      */
     public function create($id)
     {
-        //
-        return response($id);
+        $user = User::findOrFail($id);
+        return view('image.create', compact('user')); //Llama a la vista crearte juento con su id
 
     }
 
@@ -39,9 +42,28 @@ class ImagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+
+        $datos = request()->except(['_token', '_method']);
+        $image_path = $request->file('image_path');
+        if($image_path){
+            $image_path_name = $id."_".$image_path->getClientOriginalName();
+
+            $image_path->storeAs('public/images', $image_path_name);
+            //Guarda la imágen en base de datos
+            Image::create([
+                'user_id' => $id,
+                'image_path' => $image_path_name,
+                'description' => $datos['description'],
+            ]);
+            return redirect("/home");
+
+        }
+
+
+        //Error return
+        return redirect("/image/".$id."/save")->with('message', 'There was a problem uploading the image');
     }
 
     /**

@@ -23,12 +23,12 @@
 
                          <!--Campo Imágen-->
                         <div class="form-group row">
-                            <label for="image_pat" class="col-md-4 col-form-label text-md-right">{{ __('Imagen')}}</label>
+                            <label for="image_path" class="col-md-4 col-form-label text-md-right">{{ __('Imagen')}}</label>
 
                             <div class="col-md-6">
-                                <input id="image_pat"  accept="image/*" type="file" class="form-control @error('image_pat') is-invalid @enderror" name="image_pat"  autocomplete="image_pat" required>
+                                <input id="image_path"  accept="image/*" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path"  autocomplete="image_path" required>
 
-                                @error('image_pat')
+                                @error('image_path')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -41,8 +41,8 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description')}}</label>
 
                             <div class="col-md-6">
-                                <input id="description"  accept="image/*" type="file" class="form-control @error('description') is-invalid @enderror" name="description"  autocomplete="description" required>
-
+                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" autocomplete="description">Hello world
+                                </textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage; //Para las imágenes
 use Illuminate\Support\Facades\File; //Para las imágenes
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -94,11 +95,11 @@ class UserController extends Controller
             $image_path->storeAs('public/users', $image_path_name); //Almacena en el directorio users de storage con el nombre image_path_name
 
             $newDates['image_profile'] = $image_path_name; //Coloco en el array de los nuevos datos el nombre de la imagen
-            //$_SESSION['message'] = 'Has actualizado también la imágen';
         }else{
             //$_SESSION['message'] = 'La imágen no la has actualizada';
         }
         //Actualiza la base de datos
+        $newDates['password'] = Hash::make($newDates['password']); //hago el hash de la contraseña antes de insetar
         $oldDates = User::where('id',"=",$id)->update($newDates);
         return redirect("/user/". $id ."/config")->with('message', 'the profile was updated correctly');
     }
