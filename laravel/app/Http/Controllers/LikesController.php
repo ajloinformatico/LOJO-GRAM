@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\likes;
+use App\like;
 use Illuminate\Http\Request;
 
 class LikesController extends Controller
@@ -18,13 +18,19 @@ class LikesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Crea una nueva entrada en la tabla de likes
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user_id, $image_id)
     {
-        //
+        Like::Create([
+            'user_id' => $user_id,
+            'image_id' => $image_id,
+        ]);
+        return redirect ('/home');
+
+
     }
 
     /**
@@ -75,11 +81,15 @@ class LikesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\likes  $likes
+     * @param  \App\likes  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(likes $likes)
+    public function destroy($id)
     {
         //
+        $like = Like::findOrFail($id);
+        $like->delete();
+        return redirect('/home');
+
     }
 }

@@ -54,16 +54,16 @@
                         @else
                             <!--Menú Burger de navegación-->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
+                                <a class="nav-link" href="{{ url('/home') }}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/gente') }}">Gente</a>
+                                <a class="nav-link" href="{{ url('/gente') }}">People</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/favoritas')}}">Favoritas</a>
+                                <a class="nav-link" href="{{ url('/favoritas')}}">Favs</a>
                             </li>
                             <li class="nav-item">
-                                <a  class="nav-link" href="{{ url('/image/'.Auth::user()->id.'/save')}}">Subir Imágen</a>
+                                <a  class="nav-link" href="{{ url('/image/'.Auth::user()->id.'/save')}}">Upload new</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -81,7 +81,7 @@
 
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                        {{Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <!--Menú desplegable-->
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -103,6 +103,8 @@
                                         @csrf
                                     </form>
                                 </div>
+                                 <!--INTRODUZCO LA CISTA DE PAGINACIÓN AL FINAL DE CADA PÁGINA-->
+
                             </li>
                         @endguest
                     </ul>
@@ -112,14 +114,11 @@
 
         <main class="py-4">
             @yield('content')
-            @if({images})
-                <p>We have photos</p>
-
-            @else
-                <p>ADD THE FIRST IMAGE :)</p>
-            @endif
 
         </main>
+
     </div>
+    <!--Font awesome icons-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>
 </body>
 </html>

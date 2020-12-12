@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         //Si hay imágenes
+        /*
         if(DB::table('images')->groupBy('user_id')->count() > 0){
             //Cargo las imágenes en el index
             $images = Image::orderBy('id','desc')->paginate(5);
@@ -33,7 +35,11 @@ class HomeController extends Controller
             return view('home',compact([$images, 'images']));
         }else{
             return view('home');
-        }
+        }*/
+        //se le indica que caad página mostrará solo 5 imágenes por cada id
+        $images = Image::orderBy('id','desc')->paginate(5);
+
+        return view('home')->with('images', $images);
 
 
     }

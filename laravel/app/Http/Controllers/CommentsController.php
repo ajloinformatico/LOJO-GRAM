@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\comments;
+use App\comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -35,7 +35,17 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = request()->except('_token');
+
+        if($datos['description'] != ""){
+            Comment::create([
+                'user_id' => $datos['user_id'],
+                'image_id' => $datos['image_id'],
+                'description' => $datos['description'],
+            ]);
+            return redirect('/home');
+        }
+        return redirect('/home')->with('message', 'You have not commented anything');
     }
 
     /**
@@ -75,11 +85,14 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\comments  $comments
+     * @param  \App\comments  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(comments $comments)
+    public function destroy($id)
     {
+        $oldComment = Comment::findOrFail($id);
+        $oldComment->delete();
+        return redirect('/home');
         //
     }
 }

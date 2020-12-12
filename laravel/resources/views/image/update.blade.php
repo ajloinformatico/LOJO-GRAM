@@ -16,7 +16,7 @@
                 <div class="card-header">{{ __('Profile Config') }}</div>
 
                 <div class="card-body">
-                    <form method="POST"   enctype="multipart/form-data" action="{{ url("image/save/".$user->id) }}"><!--Envio también la id pra hacer el update-->
+                    <form method="POST"   enctype="multipart/form-data" action="{{ url("image/update/".$image['id']) }}"><!--Envio también la id pra hacer el update-->
                         @csrf
                         {{ method_field('PATCH')}}
 
@@ -26,7 +26,7 @@
                             <label for="image_path" class="col-md-4 col-form-label text-md-right">{{ __('Imagen')}}</label>
 
                             <div class="col-md-6">
-                                <input id="image_path"  accept="image/*" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path"  autocomplete="image_path" required>
+                            <input id="image_path"  accept="image/*" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path" value="{{$image['image_path']}}"  autocomplete="image_path">
 
                                 @error('image_path')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description')}}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" autocomplete="description" required> Hello World
+                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" autocomplete="description" > {{$image['description']}}
                                 </textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -58,11 +58,13 @@
                         <!--Campo submit-->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Upload') }}
+                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#ModalUpdate">
+                                    {{ __('Update') }}
                                 </button>
-                            </div>
-                        </div>
+
+
+
+
                     </form>
                 </div>
             </div>
@@ -70,3 +72,5 @@
     </div>
 </div>
 @endsection
+
+

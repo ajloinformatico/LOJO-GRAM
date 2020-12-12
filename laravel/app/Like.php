@@ -21,5 +21,9 @@ class Like extends Model
     public function user(){
         return $this->belongsTo('App\User', 'user_id');
     }
+
+    protected $fillable = [
+        'user_id', 'image_id'
+    ];
 }
 

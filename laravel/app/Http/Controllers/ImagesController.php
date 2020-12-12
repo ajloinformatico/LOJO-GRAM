@@ -48,6 +48,12 @@ class ImagesController extends Controller
         $datos = request()->except(['_token', '_method']);
         $image_path = $request->file('image_path');
         if($image_path){
+            //Validador de imágen
+            $validatedData = $request->validate([
+                'image_path' => 'required|mimes:jpeg,png,jpg|max:3000',
+            ]);
+
+
             $image_path_name = $id."_".$image_path->getClientOriginalName();
 
             $image_path->storeAs('public/images', $image_path_name);
@@ -80,25 +86,56 @@ class ImagesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\images  $images
+     * @param  \App\images  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(images $images)
+    public function edit($id)
     {
-        //
+        $image = Image::findOrFail($id);
+        return view ('image.update')->with('image', $image);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\images  $images
+     * @param  \App\images  $id Id de la imágen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, images $images)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $new = request()->except(['_token', '_method']);
+        //Instancio la imágen antes de actualizar
+        $oldImage = Image::findOrFail($id);
+        $image_path = $request->file('image_path');
+        if($image_path){
+            //Validador de imágen
+            $validatedData = $request->validate([
+                'image_path' => 'required|mimes:jpeg,png,jpg,|max:3000',
+            ]);
+
+            $image_path_name = $id."_".$image_path->getClientOriginalName();
+            //Elimino de storage la imágen antigua
+            Storage::disk('images')->delete($oldImage['image_path']);
+
+            //Almaceno la imágen nueva
+            $image_path->storeAs('public/images', $image_path_name);
+
+            //Guardo la imágen en la base de datos la imágen nueva
+            $oldImage['image_path'] = $image_path_name;
+            $oldImage->save();
+
+            return redirect('/home');
+        }
+        return redirect("/image/".$id."/update/")->with('message', 'Nothing to update');
+
+}
+
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -106,8 +143,14 @@ class ImagesController extends Controller
      * @param  \App\images  $images
      * @return \Illuminate\Http\Response
      */
-    public function destroy(images $images)
+    public function destroy($id)
     {
-        //
+        //Selecciono la imagen
+        $image = Image::findOrFail($id);
+        //Elimina la imagem
+        Storage::disk('images')->delete($image['image_path']);
+        //Elimina de la base de datos
+        $image->delete();
+        return redirect('/home');
     }
 }
