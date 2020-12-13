@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Dotenv\Validator;
+use App\Image;
 use Illuminate\Http\Request;
-use Illuminate\Session\Store;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage; //Para las imágenes
-use Illuminate\Support\Facades\File; //Para las imágenes
 use Illuminate\Support\Facades\Hash;
 
 
@@ -20,9 +17,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function profile($id)
     {
-        //
+        $user = User::findOrFail($id);
+        //$images = DB::table('images')->where('user_id',$id)->get();
+        $images = Image::where('user_id','=',$id)->orderBy('id','desc')->paginate(5);
+        return view('user.profile')->with('user',$user)->with('images',$images);
     }
 
     /**
@@ -38,23 +38,26 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  {$id}
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function favs($id)
     {
-        //
+        $user = User::findOrFail($id);
+        //$images = Image::where('user_id','=',$id)->orderBy('id','desc')->paginate(5);
+        $images = Image::orderBy('id','desc')->paginate(5);
+        return view('user.favs')->with('user',$user)->with('images',$images);
+
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
+     * Load users search view
+     * @param id : User id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function search($id)
     {
-        //
+        return view('user.search');
     }
 
     /**
@@ -103,21 +106,5 @@ class UserController extends Controller
         $oldDates = User::where('id',"=",$id)->update($newDates);
         return redirect("/user/". $id ."/config")->with('message', 'the profile was updated correctly');
     }
-    /*
-    OTRA FORMA DE HACER LA INSERCCIÓN
-    $image = $request->file('imagen');
-    $image->move('uploads', $image->getClientOriginalName()); //Guarda en users
-    $nombre_tabla->imagen = image->getClientOriginalName(); //Guarda en la base de datos
-    */
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
 }

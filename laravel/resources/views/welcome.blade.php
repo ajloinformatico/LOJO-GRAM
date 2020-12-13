@@ -28,13 +28,13 @@
         </header>
         <main class="main-welcome">
             <h2>LOJOGRAM</h2>
-            <p>Una app de <strong>INFOLOJO</strong> si puedes imaginarlo puedes crearlo</p>
+            <p>An app developed by <b>INFOLOJO</b>. If you can imagine it you can creat it</p>
         </main>
         <footer class="footer-welcome">
             <p>
-                Esta aplicación ha sido desarrollada por <a href="https://www.infolojo.es" alt="enlace a infolojo.es" title="enlace a infolojo" target="_blank">infolojo</a>
+                This app has been developed by  <a href="https://www.infolojo.es" alt="enlace a infolojo.es" title="enlace a infolojo" target="_blank">infolojo</a>
             <br>
-                Puedes ver más proyectos desarrollados por mí en <a href="" alt="github" title="enlace a github" target="_blank">ajloinformatico</a>
+                You can see more about me at<a href="" alt="github" title="enlace a github" target="_blank">ajloinformatico</a>
             </p>
         </footer>
     </body>

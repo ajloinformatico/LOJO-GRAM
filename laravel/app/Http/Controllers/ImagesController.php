@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Image;
-use App\images;
 use App\User;
-use Faker\Provider\ar_JO\Company;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage; //Para las imágenes
-use Illuminate\Support\Facades\File; //Para las imágenes
 
 class ImagesController extends Controller
 {
@@ -40,6 +36,7 @@ class ImagesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param id $id: User id
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $id)
@@ -72,21 +69,12 @@ class ImagesController extends Controller
         return redirect("/image/".$id."/save")->with('message', 'There was a problem uploading the image');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\images  $images
-     * @return \Illuminate\Http\Response
-     */
-    public function show(images $images)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\images  $id
+     * @param  \App\images  $id Image id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -140,14 +128,14 @@ class ImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\images  $images
+     * @param  id $id:  image id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //Selecciono la imagen
         $image = Image::findOrFail($id);
-        //Elimina la imagem
+          //Elimina la imagem
         Storage::disk('images')->delete($image['image_path']);
         //Elimina de la base de datos
         $image->delete();

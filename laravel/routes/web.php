@@ -20,6 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/{user}/config', 'UserController@config')->name('user.config'); //El controlador va ha cargar el formulario con los datos
 Route::patch('/user/update/{user}','UserController@update')->name('user.update');
+Route::get('/profile/{id}', 'UserController@profile')->name('user.profile'); //Carga el perfil de un usaurio a partir de una id
+Route::get('/profile/{id}/search/', 'UserController@search')->name('user.search'); //Carga el perfil de un usaurio a partir de una id
+Route::get('/favs/{id}', 'UserController@favs')->name('user.favs');
 
 //Rutas de imágebnes
 Route::get('/image/{user}/save', 'ImagesController@create')->name('image.create'); //Vista para insertar una imágen
@@ -36,3 +39,4 @@ Route::get('/comment/destroy/{id}', 'CommentsController@destroy'); //Elimina un 
 //Ruta de Likes
 Route::get('/like/{id_user}/{id_image}', 'LikesController@create');
 Route::get('/dislike/{id}', 'LikesController@destroy'); //Para eliminar solo con la id de los likes
+

@@ -57,10 +57,10 @@
                                 <a class="nav-link" href="{{ url('/home') }}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/gente') }}">People</a>
+                                <a class="nav-link" href="{{ url('/profile/'.Auth::User()->id.'/search/') }}">People</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/favoritas')}}">Favs</a>
+                                <a class="nav-link" href="{{ url('/favs/'.Auth::User()->id)}}">Favs</a>
                             </li>
                             <li class="nav-item">
                                 <a  class="nav-link" href="{{ url('/image/'.Auth::user()->id.'/save')}}">Upload new</a>
@@ -86,7 +86,7 @@
                                 <!--Menú desplegable-->
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <!--GET con la id al perfil del usuario-->
-                                    <a class="dropdown-item" href="{{ url('/userPerfil/') }}">{{__('Profile')}}</a>
+                                    <a class="dropdown-item" href="{{ url('/profile/'.Auth::user()->id)}}">{{__('Profile')}}</a>
 
                                     <!--GET con la id a la configuración-->
                                     <!--con Autho::user()->id Accedo a la id-->

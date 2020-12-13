@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <!--Si no hay imágenes muestra mensaje de bienvenida-->
             @if(!$images->count() == 0)
-                <h1 style="text-align: center;">Discover</h1>
+                <h1 style="text-align: center;">{{$user['name']}} Profile</h1>
                 @foreach($images as $image)
                     <div class="card mb-5">
                         <div class="card-header">
@@ -150,12 +150,13 @@
                         </div>
 
                     </div>
-
                 @endforeach
             <!--Mensage si no hay cartas-->
             @else
             <div class="card">
-                    <div class="card-header">Welcome</div>
+                    <div class="card-header">
+                        <h1 style="text-align: center;">{{$user['name']}} Profile</h1>
+                    </div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -164,7 +165,7 @@
                             </div>
                         @endif
 
-                        You could be the first to upload an image
+                        Here you will see your own images
                     </div>
                 </div>
 
