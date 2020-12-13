@@ -21,6 +21,8 @@ docker-compose up
 at http://localhost:8080/ CREATE DATABASE LARAVEL;
 
 php artisan migrate:fresh
+
 php artisan db:seed
 
-<h2>Enjoy it!</h2>
+
+<h2>Go to http:://localhost:80/ and Enjoy it!</h2>
