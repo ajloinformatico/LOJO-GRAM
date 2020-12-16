@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Image;
 use App\User;
+use App\Like;
 
 class HomeController extends Controller
 {
@@ -39,7 +40,24 @@ class HomeController extends Controller
         //se le indica que caad página mostrará solo 5 imágenes por cada id
         $images = Image::orderBy('id','desc')->paginate(5);
 
-        return view('home')->with('images', $images);
+        //Creo un array vacío para los usuarios
+        $users = [];
+        //Love normal loops
+        for($i = 0; $i < count($images); $i++){
+            //Dame id nombre nick e imagen profile de los usuarios que tengan una id en la imagen
+            $users[$i] = DB::table('users')->select('id' ,'name','surname', 'image_profile')->where('id',$images[$i]['user_id'])->first();
+        }
+
+
+
+        return response($users);
+        $likes = Like ::OrderBy('id','desc')->paginate(5);
+
+        return view('home', array(
+            'images' => $images,
+            'users' => $users,
+            'likes' => $likes,
+        ));
 
 
     }

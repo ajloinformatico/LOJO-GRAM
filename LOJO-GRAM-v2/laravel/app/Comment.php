@@ -10,17 +10,18 @@ class Comment extends Model
 
     //M:1 con imagenes
 
-    //Muchos a uno una imagen tinen muchos likes
+    //Muchos a uno una imagen tinen muchos comentarios
     public function images(){
         return $this->belongsTo('App\Image', 'image_id');
 
     }
 
     //M:1 con usuaruio
-    //Muchos a uno un usuario da muchos likes
+    //Muchos a uno un usuario da muchos comentarios
     public function user(){
         return $this->belongsTo('App\User', 'user_id');
     }
+
 
     /**
      * The attributes that are mass assignable.

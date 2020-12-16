@@ -8,12 +8,15 @@
             @if(!$images->count() == 0)
                 <h1 style="text-align: center;">Discover</h1>
                 @foreach($images as $image)
+
+
                     <div class="card mb-5">
                         <div class="card-header">
                             <!--Muestra la imágen del usuario-->
                             <p>
-                            @if((DB::table('users')->where('id',$image['user_id'])->value('image_profile')) != 'standUser.jpg')
-                                <img  src="{{asset('/storage/users/'. DB::table('users')->where('id',$image['user_id'])->value('image_profile'))}}" alt="imagen del usuario" title="imágen del usuario" width='50px' class="rounded-circle">
+                            <!--TODO Esta la voy sacando en bucle no se como podría cargarla sin hacer aquí la consulta-->
+                            @if($user['image_profile'] != 'standUser.jpg')
+                                <img  src="{{asset('/storage/users/'.$user['image_profile'])}}" alt="imagen del usuario" title="imágen del usuario" width='50px' class="rounded-circle">
                                         <!--Si no carga la imágen por-->
                             @else
                                 <img  src="{{asset('/storage/general/standUser.jpg')}}" alt="imágen del usuario" title="imágen del usuario" width='50px' class="rounded-circle">

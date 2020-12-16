@@ -39,6 +39,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //1:M con imágenes
+    //Muchos imágenes asociadas a un usuario
+    public function images(){
+        return $this->hasMany('App\Image')->orderBy('id','desc');
+    }
+
+    //1:M con comentarios
+    //Muchos comentarios están asociados a un usuario
+    public function comentarios(){
+        return $this->hasMany('App\Comment')->orderBy('id','desc');
+    }
+
+
+    //1:M con Likes
+    //Muchos likes están asociados a un usuario
+    public function likes(){
+        return $this->hasMany('App\Like')->orderBy('id','desc');
+    }
+
+
+
 
 
 }
