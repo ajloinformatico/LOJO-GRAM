@@ -37,27 +37,28 @@ class HomeController extends Controller
         }else{
             return view('home');
         }*/
+        //
+
         //se le indica que caad página mostrará solo 5 imágenes por cada id
         $images = Image::orderBy('id','desc')->paginate(5);
 
-        //Creo un array vacío para los usuarios
+        //Creo arrays vacío para las distintas tablas
         $users = [];
+        //$likes = [];
+        //$coments = [];
+        //En bucle voy cogiendo los datos para mandarlo a la vista
         //Love normal loops
         for($i = 0; $i < count($images); $i++){
+            $users[$i] = $images[0]->user();
+            //$users[$i] = User::find($images[$i]['user_id']);
             //Dame id nombre nick e imagen profile de los usuarios que tengan una id en la imagen
-            $users[$i] = DB::table('users')->select('id' ,'name','surname', 'image_profile')->where('id',$images[$i]['user_id'])->first();
+            //$users[$i] = DB::table('users')->select('id' ,'name','surname', 'image_profile')->where('id',$images[$i]['user_id'])->first();
+            //$likes[$i] = DB::table('likes')->select('id','user_id','image_id')->where('image_id',$images[$i]['id'])->first();
+            //$coments[$i] = DB::table('comments')->select('id', 'user_id', 'image_id', 'description')->where('image_id', $images[$i]['id'])->first();
         }
-
-
-
         return response($users);
-        $likes = Like ::OrderBy('id','desc')->paginate(5);
+        return view('home')->with('images', $images);
 
-        return view('home', array(
-            'images' => $images,
-            'users' => $users,
-            'likes' => $likes,
-        ));
 
 
     }

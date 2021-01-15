@@ -20,6 +20,9 @@ An application that works in a similar way to instagram.
 docker-compose up
 at http://localhost:8080/ CREATE DATABASE LARAVEL;
 
+<i>change the DB_HOST constant in .env to 127.0.0.1 to migrate and seed</i>
+<i>or run these from the container</i>
+
 php artisan migrate:fresh
 
 php artisan db:seed
