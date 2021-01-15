@@ -22,6 +22,7 @@ at http://localhost:8080/ CREATE DATABASE LARAVEL;
 
 <i>change the DB_HOST constant in .env to 127.0.0.1 to migrate and seed</i>
 <i>or run these from the container</i>
+<i>then leave the constant with the value db (name of the container with the database)</i>
 
 php artisan migrate:fresh
 
