@@ -14,8 +14,9 @@ An application that works in a similar way to instagram.
   <li>Profile home favs and config views</li>
 </ul>
 <h2>A powerful application</h2>
+<p>Here you can see images of the application</p>
+<img src="img/unregister.png">
 
-# Run
 
 docker-compose up
 at http://localhost:8080/ CREATE DATABASE LARAVEL;
