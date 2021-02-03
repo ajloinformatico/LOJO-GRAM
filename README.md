@@ -20,18 +20,24 @@ An application that works in a similar way to instagram.
 <img src="img/updatingprofile.png" añt="profile settings" width="600" height="400">
 <img src="img/firstphoto.png" añt="First photo" width="600" height="400">
 <img src="img/deletingcomment.png" añt="Deleting comment" width="600" height="400">
-
-
+<br>
+<br>
+<h2>RUN</h2>
+<p>Go to LTS version</p>
 docker-compose up
 at http://localhost:8080/ CREATE DATABASE LARAVEL;
+<img src="img/compose.png" alt="compose command"/>
 
 <i>change the DB_HOST constant in .env to 127.0.0.1 to migrate and seed</i>
 <i>or run these from the container</i>
+
+<img src="img/change.env.png"/>
 <i>then leave the constant with the value db (name of the container with the database)</i>
 
 php artisan migrate:fresh
+<img src="img/makemigrate.png" alt="makemigration"/>
 
 php artisan db:seed
-
+<img src="img/makeseed.png" alt="make seed"/>
 
 <h2>Go to http:://localhost:80/ and Enjoy it!</h2>
