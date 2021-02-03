@@ -16,7 +16,10 @@ An application that works in a similar way to instagram.
 <h2>A powerful application</h2>
 <p>Here you can see images of the application</p>
 <img src="img/unregister.png" alt="unregister view" width="600" height="400">
-<img src="img/register.png" alt="register of a new user">
+<img src="img/register.png" alt="register of a new user" width="600" height="400">
+<img src="img/updatingprofile.png" añt="profile settings" width="600" height="400">
+<img src="img/firstphoto.png" añt="First photo" width="600" height="400">
+<img src="img/deletingcomment.png" añt="Deleting comment" width="600" height="400">
 
 
 docker-compose up
