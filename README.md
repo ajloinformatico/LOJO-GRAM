@@ -1,5 +1,5 @@
 # LOJO-GRAM
-Social Network app in lravel
+Social Network app in lravel using MVC arquitecture
 
 # Functions
 
@@ -15,13 +15,11 @@ An application that works in a similar way to instagram.
 </ul>
 <h2>A powerful application</h2>
 <p>Here you can see images of the application</p>
-<center>
 <img src="img/unregister.png" alt="unregister view" width="400" >
 <img src="img/register.png" alt="register of a new user" width="400" >
 <img src="img/updatingprofile.png" añt="profile settings" width="400" >
 <img src="img/firstphoto.png" añt="First photo" width="400" >
 <img src="img/deletingcomment.png" añt="Deleting comment" width="400">
-</center>
 <br>
 <br>
 <h2>RUN</h2>
