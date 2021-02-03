@@ -34,10 +34,10 @@ at http://localhost:8080/ CREATE DATABASE LARAVEL;
 <img src="img/change.env.png"/>
 <i>then leave the constant with the value db (name of the container with the database)</i>
 
-php artisan migrate:fresh
+<p>php artisan migrate:fresh</p>
 <img src="img/makemigrate.png" alt="makemigration"/>
 
-php artisan db:seed
+<p>php artisan db:seed</p>
 <img src="img/makeseed.png" alt="make seed"/>
 
 <h2>Go to http:://localhost:80/ and Enjoy it!</h2>
