@@ -15,7 +15,8 @@ An application that works in a similar way to instagram.
 </ul>
 <h2>A powerful application</h2>
 <p>Here you can see images of the application</p>
-<img src="img/unregister.png" width="600" height="400">
+<img src="img/unregister.png" alt="unregister view" width="600" height="400">
+<img src="img/register.png" alt="register of a new user">
 
 
 docker-compose up
