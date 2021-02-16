@@ -56,4 +56,4 @@ php artisan db:seed
 ![make seed](./img/makeseed.png)
 
 
-#Go to http://localhost:80/ and Enjoy it!
+# Go to http://localhost:80/ and Enjoy it!
